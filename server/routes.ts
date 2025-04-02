@@ -6,10 +6,6 @@ import {
   insertContactSchema, 
   insertNewsletterSchema 
 } from "@shared/schema";
-import twilio from 'twilio';
-
-const twilioClient = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
-const BUSINESS_PHONE = '(877)-307-8131'; // Your business phone number
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API routes for waitlist
@@ -44,22 +40,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // API routes for contact form
+  // API routes for contact form (Twilio removed)
   app.post("/api/contact", async (req: Request, res: Response) => {
     try {
       const validatedData = insertContactSchema.parse(req.body);
       const entry = await storage.createContactEntry(validatedData);
-      
-      // Send SMS notification
-      await twilioClient.messages.create({
-        body: `New Contact Form Submission:\nName: ${validatedData.name}\nEmail: ${validatedData.email}\nPhone: ${validatedData.phone}\nSubject: ${validatedData.subject}\nMessage: ${validatedData.message}`,
-        to: BUSINESS_PHONE,
-        from: process.env.TWILIO_PHONE_NUMBER
-      });
 
       res.status(201).json({ 
         success: true, 
-        message: "Message sent successfully", 
+        message: "Message saved successfully", 
         data: entry 
       });
     } catch (error) {
