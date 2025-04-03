@@ -13,17 +13,19 @@ export function HeroSection() {
         transition={{ duration: 0.6 }}
         className="relative py-3 bg-gradient-to-b from-white to-gray-50 text-center overflow-hidden"
       >
-        <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] opacity-10"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-transparent"></div>
+        {/* Removed the following lines to remove transparency effects */}
+        {/* <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] opacity-10"></div> */}
+        {/* <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-transparent"></div> */}
 
-        <motion.div
+        {/* Removed the following lines to remove transparency effects */}
+        {/* <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="absolute inset-0 w-full h-full"
           style={{
             background: 'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.8) 0%, transparent 70%)',
           }}
-        />
+        /> */}
 
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -60,11 +62,11 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="flex justify-center gap-4 mt-6"
         >
-          <div className="px-4 py-2 bg-red-50 rounded-lg border border-red-100">
-            <span className="text-red-600 font-semibold">15+ Years Experience</span>
+          <div className="px-4 py-2 bg-red-400 rounded-lg shadow-sm">
+            <span className="text-white font-bold text-lg">15+ Years Experience</span>
           </div>
-          <div className="px-4 py-2 bg-red-50 rounded-lg border border-red-100">
-            <span className="text-red-600 font-semibold">100% Success Rate</span>
+          <div className="px-4 py-2 bg-red-400 rounded-lg shadow-sm">
+            <span className="text-white font-bold text-lg">100% Success Rate</span>
           </div>
         </motion.div>
       </motion.div>
